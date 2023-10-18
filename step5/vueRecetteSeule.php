@@ -44,7 +44,9 @@ ob_start();
 
 
     <div class="row mt-3">
-        <?php foreach ($comsWithSingleRecipe as $value) {
+        <?php
+        if ($comsWithSingleRecipe !=0) {
+            foreach ($comsWithSingleRecipe as $value) {
             ?>
             <div class="col p-1 m-0">
                 <div class="card bg-dark text-light">
@@ -73,7 +75,10 @@ ob_start();
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        <?php } 
+    }else {
+        echo '<p> Il n\'y a pas de commentaire pour cette recette !</p>';
+    }?>
     </div>
 </div>
 

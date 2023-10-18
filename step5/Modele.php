@@ -54,8 +54,13 @@ function getCommentWithSingleRecipe($idRecette){
         $commentaireEnLienAvecSingleRecette = $db->prepare("SELECT * FROM t_comment WHERE id_rec = ?");
         $commentaireEnLienAvecSingleRecette -> bindValue(1, $idRecette, PDO::PARAM_INT);
         $commentaireEnLienAvecSingleRecette -> execute();
-        $comsWithSingleRecipe = $commentaireEnLienAvecSingleRecette -> fetchAll();
-        return $comsWithSingleRecipe;
+        if ($commentaireEnLienAvecSingleRecette->rowCount()) {
+                $comsWithSingleRecipe = $commentaireEnLienAvecSingleRecette -> fetchAll();
+                return $comsWithSingleRecipe;
+        } else {
+               $comsWithSingleRecipe = 0;
+               return $comsWithSingleRecipe;
+        }
         $db = null;
 }
 

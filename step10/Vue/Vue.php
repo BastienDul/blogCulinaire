@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Vue;
 
 class Vue{
 

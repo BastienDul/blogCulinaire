@@ -1,51 +1,50 @@
 <?php
 
-require_once ('Modele/Modele.php');
+namespace App\Modele;
 
-class Recette extends Modele{
+use App\Modele\Modele;
 
+// require_once('Modele/Modele.php');
 
-
+// La classe Recette hérite de la classe Modele
+class Recette extends Modele
+{
+    // Récupère une recette en fonction de son ID
     public function getone($idrecette)
     {
-
-        $sql = ("SELECT * FROM t_recipe WHERE rec_id = " . $idrecette);
+        // Requête SQL pour récupérer une recette spécifique
+        $sql = "SELECT * FROM t_recipe WHERE rec_id = ?";
+        // Exécution de la requête avec l'ID de la recette en tant que paramètre
         $seule = $this->executerRequete($sql, array($idrecette));
-        if($seule->rowCount() == 1){
+        // Vérification du nombre de lignes retournées
+        if ($seule->rowCount() == 1) {
+            // Renvoie de la ligne correspondante
             return $seule->fetch();
-        }  else{
-            throw new Exception("Aucune recette ne correpsond à l'identification");
+        } else {
+            // Génération d'une exception si aucune recette ne correspond à l'identification
+            throw new Exception("Aucune recette ne correspond à l'identification");
         }
-        
-        }
-    
+    }
 
-
-    //recette a la une
+    // Récupère une recette au hasard
     public function getRecipe()
     {
-        
-        $sql = ('SELECT * FROM t_recipe ORDER BY RAND() LIMIT 1');
+        // Requête SQL pour récupérer une recette aléatoire
+        $sql = 'SELECT * FROM t_recipe ORDER BY RAND() LIMIT 1';
+        // Exécution de la requête
         $recipe =  $this->executerRequete($sql);
-        return $recipe ->fetch();
-        
+        // Renvoie de la recette récupérée
+        return $recipe->fetch();
     }
 
-
-   
-
-    //3 derniere recettes
+    // Récupère les trois dernières recettes ajoutées
     public function getThreeLastRecipes()
     {
-
-        $sql = ('SELECT * FROM t_recipe ORDER BY rec_id DESC LIMIT 3');
+        // Requête SQL pour récupérer les trois dernières recettes
+        $sql = 'SELECT * FROM t_recipe ORDER BY rec_id DESC LIMIT 3';
+        // Exécution de la requête
         $recipes =  $this->executerRequete($sql);
-        return $recipes ->fetchAll();
-        
+        // Renvoie de toutes les recettes récupérées
+        return $recipes->fetchAll();
     }
-
-
-   
-
-
 }

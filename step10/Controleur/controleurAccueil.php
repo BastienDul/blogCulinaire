@@ -1,8 +1,16 @@
 <?php
 
-require_once './Modele/Recette.php';
-require_once './Modele/Commentaire.php';
-require_once './Vue/Vue.php';
+
+namespace App\Controleur;
+
+use App\Modele\Recette;
+use App\Modele\Commentaire;
+use App\Vue\Vue;
+
+// require_once './Modele/Recette.php';
+// require_once './Modele/Commentaire.php';
+// require_once './Vue/Vue.php';
+
 
 class ControleurAccueil
 {
